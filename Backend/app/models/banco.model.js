@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
       numero_cuenta: {
         type: Sequelize.BIGINT
       },
+      certificado:{
+        type: Sequelize.STRING
+      },
       cantidad_ahorro: {
         type: Sequelize.FLOAT
       }

@@ -23,10 +23,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       nombre_proyecto: {
-        type:Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       fecha_emision:{
-        type:Sequelize.DATE
+        type: Sequelize.DATEONLY
       }
 
     }, { 

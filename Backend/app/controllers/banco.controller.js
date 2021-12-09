@@ -10,6 +10,7 @@ const Op = db.Sequelize.Op;
     const banco = {
       nombre_banco: req.body.nombre_banco,
       numero_cuenta: req.body.numero_cuenta,
+      certificado: req.body.certificado,
       cantidad_ahorro: req.body.cantidad_ahorro,
     };
   

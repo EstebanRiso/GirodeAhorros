@@ -6,11 +6,11 @@ exports.create = (req, res) => {
 
   const giroahorro = {
     numero_autorizacion_giro: req.body.numero_autorizacion_giro,
-    rut_constructora: req.body.apellido_paterno,
-    comuna: req.body.apellido_materno,
-    llamado:req.body.llamado,
-    resolucion:req.body.resolucion,
-    nombre_proyecto:req.body.nombre_proyecto,
+    rut_constructora: req.body.rut_constructora,
+    comuna: req.body.comuna,
+    llamado: req.body.llamado,
+    resolucion: req.body.resolucion,
+    nombre_proyecto: req.body.nombre_proyecto,
     fecha_emision: req.body.fecha_emision
   };
 
