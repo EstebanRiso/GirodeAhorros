@@ -4,7 +4,7 @@ import Giro from './Vistas/Jefe PPEPS/GiroAhorro';
 
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link
 } from "react-router-dom";
@@ -14,14 +14,9 @@ import {
 function App() {
   return (
    <Router>
-      <Switch>
-        <Route path="/giro">
-              <Giro />
-        </Route>
-        <Route path="/creargiro">
-              
-        </Route>
-      </Switch>
+     <Routes>
+        <Route exact path='/' element={<Giro/>}/>
+      </Routes>
    </Router>
   );
 }

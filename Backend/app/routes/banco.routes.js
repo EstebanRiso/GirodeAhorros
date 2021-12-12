@@ -3,6 +3,8 @@ module.exports = app => {
     const banco= require("../controllers/banco.controller");
     var router = require("express").Router();
    
+
+    //CRUD
     router.post("/", banco.create);
     router.get("/", banco.findAll);
     router.delete("/:id",banco.delete);  

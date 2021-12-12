@@ -1,5 +1,7 @@
+const { beneficiario } = require("../models");
 const db = require("../models");
 const Beneficiario = db.beneficiario;
+const Banco= db.banco
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -32,7 +34,7 @@ exports.create = (req, res) => {
 
 // Listar todos los beneficiarios
   exports.findAll = (req, res) => {
-
+    console.log("PASO EN EL FINDALL")
     Beneficiario.findAll()
       .then(data => {
         res.send(data);
@@ -94,4 +96,32 @@ exports.create = (req, res) => {
           message: "no se pudo borrar beneficiario con rut=" + rut
         });
       });
-  };
+  }
+
+ // Consultas Especificas
+ 
+  exports.ConsultaPorAuth= (req,res)=>{
+    const autorizacion=req.params.numero_autorizacion_giro
+   try {
+    Beneficiario.findAll({where:{numero_autorizacion_giro:autorizacion},
+      include:[{
+        model:Banco,
+        attributes:["nombre_banco","numero_cuenta","certificado","cantidad_ahorro"]
+      }]
+    })
+    .then((data)=>{
+      res.send(data);
+    }).catch((error)=>{
+      res.status(500).send({
+        message:
+          err.message || "Error al encontrar beneficiarios."
+      });
+    })
+   } catch (error) {
+    res.status(500).send(error);
+   }
+    
+  
+  }
+  
+  

@@ -3,7 +3,7 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    // Create a new constructora
+    // CRUD
     router.post("/", constructora.create);
     router.get("/", constructora.findAll);
     router.delete("/:rut_constructora", constructora.delete);

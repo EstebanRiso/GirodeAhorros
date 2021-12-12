@@ -1,5 +1,7 @@
+const { constructora } = require("../models");
 const db = require("../models");
 const Giroahorro= db.giroahorro;
+const Constructora=db.constructora;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -90,3 +92,48 @@ exports.create = (req, res) => {
         });
       });
   };
+
+
+  // Consultas especificas
+  exports.ConsultaPorAuth= (req,res)=>{
+
+    const autorizacion=req.params.numero_autorizacion_giro
+
+    Giroahorro.findOne({where:{numero_autorizacion_giro:autorizacion},
+      include:[{
+        model:Constructora,
+        attributes:["rut_constructora","dv_constructora","nombre_constructora"]
+      }]
+    })
+    .then((data)=>{
+      res.send(data);
+    }).catch((error)=>{
+      res.status(500).send({
+        message:
+          err.message || "Error al encontrar giro de ahorro."
+      });
+    })
+  
+  }
+
+  exports.ConsultaPorRutConstr= (req,res)=>{
+
+    const rut_constructora=req.params.rut_constructora
+
+    Giroahorro.findAll({where:{rut_constructora:rut_constructora},
+        include:[{
+          model:Constructora,
+          attributes:["rut_constructora","dv_constructora","nombre_constructora"]
+      }]
+    })
+    .then((data)=>{
+      res.send(data);
+    }).catch((error)=>{
+      res.status(500).send({
+        message:
+          err.message || "Error al encontrar giros de ahorro."
+      });
+    })
+  
+  }
+  

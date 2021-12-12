@@ -3,7 +3,7 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    
+    //CRUD
     router.post("/", giroestado.create);
     router.get("/", giroestado.findAll);
     router.delete("/:id",giroestado.delete)
