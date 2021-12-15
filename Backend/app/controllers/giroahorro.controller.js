@@ -13,6 +13,7 @@ exports.create = (req, res) => {
     llamado: req.body.llamado,
     resolucion: req.body.resolucion,
     nombre_proyecto: req.body.nombre_proyecto,
+    id_proyecto: req.body.id_proyecto,
     fecha_emision: req.body.fecha_emision
   };
 

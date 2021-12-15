@@ -55,6 +55,7 @@ export const estiloTituloTabla = StyleSheet.create({
       backgroundColor:'#666666',
       color:'white',
       fontSize:'6pt',
+      fontStyle:'Times New Roman',
       fontWeight: 'bold',
      
     }, 
@@ -88,6 +89,16 @@ export const estiloTituloTabla = StyleSheet.create({
   export const estiloCuerpo5 = StyleSheet.create({
     page: {
       color:'black',
+      fontStyle:'Arial',
+      fontSize:'9pt',
+      fontWeight:'bold'
+    }
+  });
+
+
+  export const estiloCuerpo6 = StyleSheet.create({
+    page: {
+      color:'black',
       fontStyle:'Century Gothic',
       fontSize:'9pt',
       fontWeight:'bold',
@@ -95,7 +106,7 @@ export const estiloTituloTabla = StyleSheet.create({
   });
 
 
-  export const estiloCuerpo6 = StyleSheet.create({
+  export const estiloCuerpo7 = StyleSheet.create({
     page: {
       color:'black',
       fontStyle:'Century Gothic',

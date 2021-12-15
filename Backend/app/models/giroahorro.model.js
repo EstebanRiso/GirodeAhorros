@@ -25,6 +25,11 @@ module.exports = (sequelize, Sequelize) => {
       nombre_proyecto: {
         type: Sequelize.STRING
       },
+      
+      id_proyecto:{
+        type: Sequelize.INTEGER
+      },
+      
       fecha_emision:{
         type: Sequelize.DATEONLY
       }
