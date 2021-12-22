@@ -12,7 +12,7 @@ export const estilopagina = StyleSheet.create({
 
 
 export const estiloTitulo = StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontWeight: 'bold',
       fontStyle:'Arial',
@@ -22,7 +22,7 @@ export const estiloTitulo = StyleSheet.create({
   });
 
 export const estiloCuerpo1 = StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontStyle:'Arial',
       fontSize:'9pt', 
@@ -32,7 +32,7 @@ export const estiloCuerpo1 = StyleSheet.create({
 
 
   export const estiloSubtitulo = StyleSheet.create({
-    page: {
+    estilo: {
       color:'#990000',
       fontSyle:'Verdana',
       fontWeight: 'bold',
@@ -42,7 +42,7 @@ export const estiloCuerpo1 = StyleSheet.create({
   });
 
   export const estiloCuerpo2= StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontStyle:'Verdana',
       fontSize:'7pt',
@@ -51,7 +51,7 @@ export const estiloCuerpo1 = StyleSheet.create({
   });
 
 export const estiloTituloTabla = StyleSheet.create({
-    page: {
+    estilo: {
       backgroundColor:'#666666',
       color:'white',
       fontSize:'6pt',
@@ -62,7 +62,7 @@ export const estiloTituloTabla = StyleSheet.create({
   });
 
   export const estiloCuerpoTabla = StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontStyle:'Times New Roman',
       fontSize:'6pt'
@@ -70,7 +70,7 @@ export const estiloTituloTabla = StyleSheet.create({
   });
 
   export const estiloCuerpo3 = StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontStyle:'Arial',
       fontSize:'11pt'
@@ -78,7 +78,7 @@ export const estiloTituloTabla = StyleSheet.create({
   });
 
   export const estiloCuerpo4 = StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontStyle:'Arial',
       fontSize:'11pt',
@@ -87,7 +87,7 @@ export const estiloTituloTabla = StyleSheet.create({
   });
 
   export const estiloCuerpo5 = StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontStyle:'Arial',
       fontSize:'9pt',
@@ -97,7 +97,7 @@ export const estiloTituloTabla = StyleSheet.create({
 
 
   export const estiloCuerpo6 = StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontStyle:'Century Gothic',
       fontSize:'9pt',
@@ -107,7 +107,7 @@ export const estiloTituloTabla = StyleSheet.create({
 
 
   export const estiloCuerpo7 = StyleSheet.create({
-    page: {
+    estilo: {
       color:'black',
       fontStyle:'Century Gothic',
       fontSize:'9pt'

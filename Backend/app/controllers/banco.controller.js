@@ -8,9 +8,8 @@ const Op = db.Sequelize.Op;
   // CRUD BANCO
   exports.create = (req, res) => {
     const banco = {
-      nombre_banco: req.body.nombre_banco,
       numero_cuenta: req.body.numero_cuenta,
-      certificado: req.body.certificado,
+      nombre_banco: req.body.nombre_banco,
       cantidad_ahorro: req.body.cantidad_ahorro,
     };
   
@@ -46,10 +45,10 @@ const Op = db.Sequelize.Op;
   
   
     exports.update = (req, res) => {
-      const id = req.params.id;
+      const numero_cuenta = req.params.numero_cuenta;
   
       Banco.update(req.body, {
-        where: { id: id }
+        where: { numero_cuenta: numero_cuenta }
       })
         .then(num => {
           if (num == 1) {
@@ -58,22 +57,22 @@ const Op = db.Sequelize.Op;
             });
           } else {
             res.send({
-              message: `error al actualizar banco con id=${id}. tal vez banco no fue encontrado  o req.body esta vacío!`
+              message: `error al actualizar banco con numero_cuenta=${numero_cuenta}. tal vez banco no fue encontrado  o req.body esta vacío!`
             });
           }
         })
         .catch(err => {
           res.status(500).send({
-            message: "error al acutalizar banco con id=" + id
+            message: "error al acutalizar banco con numero_cuenta=" + numero_cuenta
           });
         });
     };
   
     exports.delete = (req, res) => {
-      const id = req.params.id;
+      const numero_cuenta = req.params.numero_cuenta;
   
       Banco.destroy({
-        where: { id: id }
+        where: { numero_cuenta: numero_cuenta }
       })
         .then(num => {
           if (num == 1) {
@@ -82,13 +81,13 @@ const Op = db.Sequelize.Op;
             });
           } else {
             res.send({
-              message: `no se pudo eliminar banco con id=${id}. tal vez esta persona no fue encontrado!`
+              message: `no se pudo eliminar banco con numero_cuenta=${numero_cuenta}. tal vez esta persona no fue encontrado!`
             });
           }
         })
         .catch(err => {
           res.status(500).send({
-            message: "no se pudo borrar banco con id=" + id
+            message: "no se pudo borrar banco con numero_cuenta=" + numero_cuenta
           });
         });
     }

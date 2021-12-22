@@ -2,7 +2,8 @@ import React ,{ useState,useEffect }from 'react';
 import {Box, TextField, Button, Container, Typography} from "@material-ui/core"
 import { useForm } from 'react-hook-form';
 import axios from 'axios'
-import {DownloadPDF1, PDF1,PDF1Dowload,PDF2} from "../../pdf/pdfs"
+import {PDFDownloadLink as DWLink} from '@react-pdf/renderer';
+import {PDF1} from "../../pdf/PDF_GiroAhorro"
 import MaterialDatatable from "material-datatable";
 
 const host="http://localhost:8081"
@@ -10,13 +11,22 @@ const host="http://localhost:8081"
 
 
 
-
+function Renderizar(props){
+  if(props.numeroautorizacion){
+    return( <PDF1 index1={props.b1} index2={props.b2} numeroautorizacion={props.numeroautorizacion} />)
+  }
+  else{
+    return(null)
+  }
+  
+}
 
 
 export default function Giro(){
 
   const [pressB1,setpressB1]=useState(false);
   const [pressB2,setpressB2]=useState(false);
+  const [numauto,setNum]=useState(null);
   const [data,setData]=useState("")
 
 
@@ -43,7 +53,10 @@ export default function Giro(){
     selectableRows:true,
     onlyOneRowCanBeSelected:true,
     download:false,
-    print:false
+    print:false,
+    onRowClick:(data,data2)=>{
+      setNum(data.numero_autorizacion_giro)
+    }
   };
   
   
@@ -148,10 +161,7 @@ export default function Giro(){
             }>
               Ver Autorización Desbloqueo de Cuentas
             </Button>
-
-                <PDF1 index1={pressB1} index2={pressB2} numeroautorizacion={2071057} ></PDF1>
-                <PDF2 index1={pressB1} index2={pressB2}></PDF2>
-                <DownloadPDF1 numeroautorizacion={2071057} ></DownloadPDF1>
+               <Renderizar b1={pressB1} b2={pressB2} numeroautorizacion={numauto}></Renderizar>
             </Container>
        </Container>
   );

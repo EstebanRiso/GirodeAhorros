@@ -11,12 +11,23 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         references: {
           model: 'estado', 
-          key: 'id'
+          key: 'id_estado'
        }
+      },
+      fecha_actualizacion:{
+        type: Sequelize.DATE,
       }
-    }, { 
-      freezeTableName: true});
+    }, {
+      timeStamps:true,
+      updatedAt:false,
+      createdAt:'estado_generado_el', 
+      freezeTableName: true
+    });
   
+
+
+     giroestado.removeAttribute('id')
+
     return giroestado;
   };
   

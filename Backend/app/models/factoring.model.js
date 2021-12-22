@@ -1,19 +1,19 @@
 module.exports = (sequelize, Sequelize) => {
-    const constructora= sequelize.define("constructora", {
+    const factoring= sequelize.define("factoring", {
   
-      rut_constructora: {
+      rut_factoring: {
         type: Sequelize.INTEGER,
         primaryKey:true
       },
-      dv_constructora: {
+      dv_factoring: {
         type: Sequelize.STRING(1),
       },
-      nombre_constructora: {
+      nombre_factoring: {
         type: Sequelize.STRING
       },
     },
-    {
+    { 
       freezeTableName: true});
 
-    return constructora;
+    return factoring;
   };

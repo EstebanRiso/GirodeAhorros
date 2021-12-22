@@ -7,20 +7,20 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true
     },
     dv_beneficiario:{
-      type: Sequelize.STRING
+      type: Sequelize.STRING(1)
     },
     id_banco: {
       type: Sequelize.INTEGER,
       references: {
         model: 'banco', 
-        key: 'id'
+        key: 'numero_cuenta'
      }
     },
     numero_autorizacion_giro: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'giroahorro', 
-        key: 'numero_autorizacion_giro'
+      type: Sequelize.INTEGER,           // GENERAR ONE TO ONE
+      references: {                   
+        model: 'autorizacion_pago',            
+        key: 'numero_autorizacion_pago'
      }
     },
     nombre_beneficiario: {
