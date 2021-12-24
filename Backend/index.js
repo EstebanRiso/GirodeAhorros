@@ -37,6 +37,14 @@ require("./app/routes/constructora.routes")(app);
 require("./app/routes/estado.routes")(app);
 require("./app/routes/giroahorro.routes")(app);
 require("./app/routes/giroestado.routes")(app);
+require("./app/routes/autorizacionDesbloqueo.routes")(app);
+require("./app/routes/autorizacionPago.routes")(app);
+require("./app/routes/certificado-proyecto.routes")(app);
+require("./app/routes/certificado.routes")(app);
+require("./app/routes/detallePago.routes")(app);
+require("./app/routes/factoring.routes")(app);
+require("./app/routes/proyecto.routes")(app);
+
 
 
 // set port, listen for requests

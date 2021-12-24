@@ -5,15 +5,15 @@ module.exports = (sequelize, Sequelize) => {
         id_proyecto:{
         type: Sequelize.INTEGER,
         references: {
-          model: 'certficiado', 
-          key: 'id_certificado'
+          model: 'proyecto', 
+          key: 'id_proyecto'
         }
       },
       id_certificado: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'proyecto', 
-          key: 'id_proyecto'
+          model: 'certificado', 
+          key: 'id_certificado'
        }
       },
     }, { 

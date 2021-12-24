@@ -81,7 +81,7 @@ const Op = db.Sequelize.Op;
             });
           } else {
             res.send({
-              message: `no se pudo eliminar banco con numero_cuenta=${numero_cuenta}. tal vez esta persona no fue encontrado!`
+              message: `no se pudo eliminar banco con numero_cuenta=${numero_cuenta}. tal vez este banco no fue encontrado!`
             });
           }
         })

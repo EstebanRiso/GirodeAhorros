@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true
       },
       rut_beneficiario:{
+        type: Sequelize.INTEGER,
         references:{
             model: 'beneficiario',
             key:'rut_beneficiario'

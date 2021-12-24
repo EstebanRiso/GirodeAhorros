@@ -52,7 +52,7 @@ exports.create = (req, res) => {
           });
         } else {
           res.send({
-            message: `error al actualizar constructora con rut=${rut}. tal vez el giro no fue encontrado  o req.body esta vacío!`
+            message: `error al actualizar constructora con rut=${rut}. tal vez la constructora no fue encontrada o req.body esta vacío!`
           });
         }
       })

@@ -80,7 +80,7 @@ autorizacionDesbloqueo.belongsTo(giroAhorro,{  foreignKey:{
 }})
 
 proyecto.belongsTo(constructora,{foreignKey:'rut_constructora'})
-proyecto.belongsTo(autorizacionPago,{foreignKey:'numero_autorizacion_pago'})
+proyecto.belongsTo(autorizacionPago,{foreignKey:'numero_autorizacion'})
 
 certificado.belongsTo(beneficiario,{foreignKey:'rut_beneficiario'})
 

@@ -8,13 +8,11 @@ exports.create = (req, res) => {
 
   const giroahorro = {
     numero_autorizacion_giro: req.body.numero_autorizacion_giro,
-    rut_constructora: req.body.rut_constructora,
+    numero_autorizacion_pago:req.body.numero_autorizacion_pago,
     comuna: req.body.comuna,
-    llamado: req.body.llamado,
-    resolucion: req.body.resolucion,
-    nombre_proyecto: req.body.nombre_proyecto,
-    id_proyecto: req.body.id_proyecto,
-    fecha_emision: req.body.fecha_emision
+    numero_resolucion: req.body.numero_resolucion,
+    fecha_resolucion: req.body.fecha_resolucion,
+    fecha_emision_documento: req.body.fecha_emision_documento
   };
 
 
@@ -96,7 +94,7 @@ exports.create = (req, res) => {
 
 
   // Consultas especificas
-  exports.ConsultaPorAuth= (req,res)=>{
+  /*exports.ConsultaPorAuth= (req,res)=>{
 
     const autorizacion=req.params.numero_autorizacion_giro
 
@@ -136,5 +134,4 @@ exports.create = (req, res) => {
       });
     })
   
-  }
-  
+  } */

@@ -10,13 +10,13 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING(1)
     },
     id_banco: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.BIGINT,
       references: {
         model: 'banco', 
         key: 'numero_cuenta'
      }
     },
-    numero_autorizacion_giro: {
+    numero_autorizacion_pago: {
       type: Sequelize.INTEGER,           // GENERAR ONE TO ONE
       references: {                   
         model: 'autorizacion_pago',            

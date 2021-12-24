@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey:true 
     },
     numero_autorizacion_pago:{
+      type:Sequelize.INTEGER,
       references: {
         model: 'autorizacion_pago', 
         key: 'numero_autorizacion_pago'

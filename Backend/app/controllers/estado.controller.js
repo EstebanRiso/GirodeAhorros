@@ -5,7 +5,9 @@ const Op = db.Sequelize.Op;
 exports.create = (req, res) => {
 
   const estado = {
-    nombre_estado:req.body.nombre_estado
+    id_estado:req.body.id_estado,
+    nombre_estado:req.body.nombre_estado,
+    comentario:req.body.comentario
   };
 
 
@@ -41,7 +43,7 @@ exports.create = (req, res) => {
     const id = req.params.id;
 
     Estado.update(req.body, {
-      where: { id: id }
+      where: { id_estado: id }
     })
       .then(num => {
         if (num == 1) {
@@ -65,7 +67,7 @@ exports.create = (req, res) => {
     const id = req.params.id;
 
     Estado.destroy({
-      where: { id : id }
+      where: { id_estado : id }
     })
       .then(num => {
         if (num == 1) {

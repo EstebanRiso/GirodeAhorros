@@ -84,7 +84,7 @@ const Op = db.Sequelize.Op;
             });
           } else {
             res.send({
-              message: `no se pudo eliminar AutorizacionDesbloqueo con numero autorizacion desbloqueo =${numero_autorizacion_desbloqueo }. tal vez esta persona no fue encontrado!`
+              message: `no se pudo eliminar AutorizacionDesbloqueo con numero autorizacion desbloqueo =${numero_autorizacion_desbloqueo }. tal vez esta autorizacion de desbloqueo no fue encontrado!`
             });
           }
         })

@@ -9,9 +9,10 @@ const Op = db.Sequelize.Op;
   exports.create = (req, res) => {
     const detallepago = {
       id_detalle_pago: req.body.id_detalle_pago,
-      numero_cheque: req.body.rut_beneficiario,
-      monto: req.body.DetallePago_nombre,
-      rut_factoring: req.body.DetallePago_anio,
+      numero_cheque: req.body.numero_cheque,
+      monto: req.body.monto,
+      rut_constructora: req.body.rut_constructora,
+      rut_factoring: req.body.rut_factoring,
       numero_autorizacion: req.body.numero_autorizacion,
       observacion: req.body.observacion,
       pertenece: req.body.pertenece
@@ -66,7 +67,7 @@ const Op = db.Sequelize.Op;
         })
         .catch(err => {
           res.status(500).send({
-            message: "error al acutalizar DetallePago con id DetallePago=" + id_detalle_pago
+            message: "error al acutalizar DetallePago con id =" + id_detalle_pago
           });
         });
     };
@@ -75,7 +76,7 @@ const Op = db.Sequelize.Op;
       const id_detalle_pago = req.params.id_detalle_pago;
   
       DetallePago.destroy({
-        where: { id_detallepago: id_detalle_pago }
+        where: { id_detalle_pago: id_detalle_pago }
       })
         .then(num => {
           if (num == 1) {
@@ -84,7 +85,7 @@ const Op = db.Sequelize.Op;
             });
           } else {
             res.send({
-              message: `no se pudo eliminar DetallePago con id DetallePago=${id_detalle_pago}. tal vez esta persona no fue encontrado!`
+              message: `no se pudo eliminar DetallePago con id DetallePago=${id_detalle_pago}. tal vez este detalle de pago no fue encontrado!`
             });
           }
         })

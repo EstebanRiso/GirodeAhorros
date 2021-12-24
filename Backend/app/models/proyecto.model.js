@@ -17,7 +17,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         references: {
           model: 'autorizacion_pago', 
-          key: 'numero_autorizacion'
+          key: 'numero_autorizacion_pago'
        }
       },
        nombre_proyecto: {

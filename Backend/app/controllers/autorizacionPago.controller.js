@@ -12,6 +12,8 @@ const Op = db.Sequelize.Op;
       llamado: req.body.llamado,
       linea_subsidio: req.body.linea_subsidio,
       titulo: req.body.titulo,
+      tipo_autorizacion: req.body.tipo_autorizacion,
+      consolidada:req.body.consolidada
     };
   
     //console.log(prestamo.fecha);
@@ -82,7 +84,7 @@ const Op = db.Sequelize.Op;
             });
           } else {
             res.send({
-              message: `no se pudo eliminar autorizacion de pago con numero autorizacion pago=${numero_autorizacion_pago}. tal vez esta persona no fue encontrado!`
+              message: `no se pudo eliminar autorizacion de pago con numero autorizacion pago=${numero_autorizacion_pago}. tal vez esta autorizacion de pago no fue encontrado!`
             });
           }
         })

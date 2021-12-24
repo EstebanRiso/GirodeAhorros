@@ -14,13 +14,10 @@ module.exports = (sequelize, Sequelize) => {
           key: 'id_estado'
        }
       },
-      fecha_actualizacion:{
-        type: Sequelize.DATE,
-      }
     }, {
-      timeStamps:true,
+      timestamps:true,
       updatedAt:false,
-      createdAt:'estado_generado_el', 
+      createdAt:'generado_en', 
       freezeTableName: true
     });
   

@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
       
     id_estado:{
       type:Sequelize.INTEGER,
-      PrimaryKey:true
+      primaryKey:true
     },
       nombre_estado: {
         type: Sequelize.STRING

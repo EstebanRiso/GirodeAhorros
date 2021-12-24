@@ -13,21 +13,24 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.FLOAT,
       },
       rut_constructora: {
+        type: Sequelize.INTEGER,
         references:{
             model:'constructora',
             key:'rut_constructora'
         }
       },
       rut_factoring:{
+        type: Sequelize.INTEGER,
           references:{
               model: 'factoring',
               key:'rut_factoring'
           }
       },
       numero_autorizacion:{
+        type: Sequelize.INTEGER,
         references:{
             model:'autorizacion_pago',
-            key:'numero_autorizacion'
+            key:'numero_autorizacion_pago'
         },
       observacion:{
         type: Sequelize.STRING

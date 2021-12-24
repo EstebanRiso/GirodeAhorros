@@ -10,7 +10,7 @@ module.exports = app => {
   router.put("/:rut_beneficiario", beneficiario.update);
 
   //Especificos
-  router.get("/consultaespecifica/:numero_autorizacion_giro",beneficiario.ConsultaPorAuth)
+  router.get("/consultaespecifica/:numero_autorizacion_pago",beneficiario.ConsultaPorAuth)
 
   app.use("/api/beneficiario", router);
 };

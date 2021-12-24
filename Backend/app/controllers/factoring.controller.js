@@ -16,14 +16,14 @@ const Op = db.Sequelize.Op;
     //console.log(prestamo.fecha);
   
   
-    Certificado.create(certificado) 
+    Factoring.create(factoring) 
       .then(data => {
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Error al registrar certificado."
+            err.message || "Error al registrar factoring."
         });
       });
   };
@@ -31,63 +31,63 @@ const Op = db.Sequelize.Op;
   
     exports.findAll = (req, res) => {
   
-      Certificado.findAll()
+      Factoring.findAll()
         .then(data => {
           res.send(data);
         })
         .catch(err => {
           res.status(500).send({
             message:
-              err.message || "Error al listar certificados."
+              err.message || "Error al listar factorings."
           });
         });
     };
   
   
     exports.update = (req, res) => {
-      const id_certificado = req.params.id_certificado;
+      const rut_factoring = req.params.rut_factoring;
   
-      Certificado.update(req.body, {
-        where: { id_certificado: id_certificado }
+      Factoring.update(req.body, {
+        where: { rut_factoring: rut_factoring }
       })
         .then(num => {
           if (num == 1) {
             res.send({
-              message: "certificado fue actualizado satisfactoriamente."
+              message: "Factoring fue actualizado satisfactoriamente."
             });
           } else {
             res.send({
-              message: `error al actualizar Certificado con id certificado=${id_certificado}. tal vez certificado no fue encontrado  o req.body esta vacío!`
+              message: `error al actualizar factoring con rut del factoring=${rut_factoring}. tal vez el factoring no fue encontrado  o req.body esta vacío!`
             });
           }
         })
         .catch(err => {
           res.status(500).send({
-            message: "error al acutalizar Certificado con id certificado=" + id_certificado
+            message: "error al acutalizar factoring con rut=" + rut_factoring
           });
         });
     };
   
     exports.delete = (req, res) => {
-      const id_certificado = req.params.id_certificado;
+      const rut_factoring = req.params.rut_factoring;
   
-      Certificado.destroy({
-        where: { id_certificado: id_certificado }
+      Factoring.destroy({
+        where: { rut_factoring: rut_factoring }
       })
         .then(num => {
           if (num == 1) {
             res.send({
-              message: "Certificado fue eliminado satisfactoriamente!"
+              message: "Factoring fue eliminado satisfactoriamente!"
             });
           } else {
             res.send({
-              message: `no se pudo eliminar Certificado con id certificado=${id_certificado}. tal vez esta persona no fue encontrado!`
+              message: `no se pudo eliminar factoring con rut del factoring=${rut_factoring}. tal vez este factoring no fue encontrado!`
             });
           }
         })
         .catch(err => {
           res.status(500).send({
-            message: "no se pudo borrar Certificado con id certificado=" + id_certificado
+            message: "no se pudo borrar factoring con rut_factoring=" + rut_factoring
           });
         });
     }

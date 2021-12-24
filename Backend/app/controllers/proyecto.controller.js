@@ -83,7 +83,7 @@ const Op = db.Sequelize.Op;
             });
           } else {
             res.send({
-              message: `no se pudo eliminar proyecto con id de proyecto =${id_proyecto}. tal vez esta persona no fue encontrado!`
+              message: `no se pudo eliminar proyecto con id de proyecto =${id_proyecto}. tal vez este proyecto no fue encontrado!`
             });
           }
         })

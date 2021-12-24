@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     rut_beneficiario: req.body.rut_beneficiario,
     dv_beneficiario: req.body.dv_beneficiario,
     id_banco : req.body.id_banco,
-    numero_autorizacion_giro: req.body.numero_autorizacion_giro,
+    numero_autorizacion_pago: req.body.numero_autorizacion_pago,
     nombre_beneficiario: req.body.nombre_beneficiario
   };
 
@@ -101,9 +101,9 @@ exports.create = (req, res) => {
  // Consultas Especificas
  
   exports.ConsultaPorAuth= (req,res)=>{
-    const autorizacion=req.params.numero_autorizacion_giro
+    const autorizacion=req.params.numero_autorizacion_pago
    try {
-    Beneficiario.findAll({where:{numero_autorizacion_giro:autorizacion},
+    Beneficiario.findAll({where:{numero_autorizacion_pago:autorizacion},
       include:[{
         model:Banco,
         attributes:["nombre_banco","numero_cuenta","certificado","cantidad_ahorro"]

@@ -1,18 +1,20 @@
 module.exports = (sequelize, Sequelize) => {
   
-    const autorizacion_pago = sequelize.define("autorizacion_pago", {
+    const autorizacion_desbloqueo = sequelize.define("autorizacion_desbloqueo", {
       
         numero_autorizacion_desbloqueo: {
             type: Sequelize.INTEGER,
             primaryKey: true
         },
         numero_autorizacion_giro:{
+            type: Sequelize.INTEGER,
             references: {
                 model: 'giroahorro', 
                 key: 'numero_autorizacion_giro'
              }
         },
         numero_autorizacion_pago:{
+            type: Sequelize.INTEGER,
             references: {
                 model: 'autorizacion_pago', 
                 key: 'numero_autorizacion_pago'
@@ -31,6 +33,6 @@ module.exports = (sequelize, Sequelize) => {
     }, { 
       freezeTableName: true});
   
-    return autorizacion_pago;
+    return autorizacion_desbloqueo;
   };
   

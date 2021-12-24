@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         },
         llamado:{
-            type: Sequelize.STRING
+            type: Sequelize.INTEGER
         },
         linea_subsidio:{
           type: Sequelize.STRING,
@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.STRING,
         },
         tipo_autorizacion:{
-          type:Sequelize.STRING
+          type:Sequelize.STRING,
        },
         consolidada:{
           type:Sequelize.BOOLEAN

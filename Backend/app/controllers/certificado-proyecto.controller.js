@@ -40,7 +40,7 @@ exports.create = (req, res) => {
       });
   };
 
-
+/*
   exports.updatebycert = (req, res) => {
     const id_certificado = req.params.id_certificado;
 
@@ -138,4 +138,4 @@ exports.create = (req, res) => {
           message: "no se pudo borrar el tabla union certificado/proyecto con id =" + id_proyecto
         });
       });
-  };
+  };*/
