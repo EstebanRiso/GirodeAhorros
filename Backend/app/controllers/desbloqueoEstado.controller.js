@@ -1,24 +1,25 @@
+const { desbloqueoestado } = require("../models");
 const db = require("../models");
-const Giroestado= db.giroestado;
+const Desbloqueoestado= db.desbloqueoestado;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-  const giroestado = {
-    id_giroahorro:req.body.id_giroahorro,
+  const desbloqueoestado = {
+    id_desbloqueo:req.body.id_desbloqueo,
     id_estado:req.body.id_estado,
     comentario:req.body.comentario
   };
 
 
-  Giroestado.create(giroestado) 
+  Desbloqueoestado.create(desbloqueoestado) 
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Error al crear giroestado."
+          err.message || "Error al crear tabla unión desbloqueo-estado."
       });
     });
 };
@@ -26,14 +27,14 @@ exports.create = (req, res) => {
 
   exports.findAll = (req, res) => {
 
-    Giroestado.findAll()
+    Desbloqueoestado.findAll()
       .then(data => {
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Error al listar giroestados."
+            err.message || "Error al listar estados en la tabla unión desbloqueo-estado."
         });
       });
   };
@@ -42,23 +43,23 @@ exports.create = (req, res) => {
   exports.updatebyahorro = (req, res) => {
     const id_giroahorro = req.params.id_giroahorro;
 
-    Giroestado.update(req.body, {
+    Desbloqueoestado.update(req.body, {
       where: { id_giroahorro: id_giroahorro }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "giroestado fue actualizado satisfactoriamente."
+            message: "Desbloqueoestado fue actualizado satisfactoriamente."
           });
         } else {
           res.send({
-            message: `error al actualizar giroestado con id de giro de ahorro =${id_giroahorro}. tal vez el giroestado no fue encontrado  o req.body esta vacío!`
+            message: `error al actualizar Desbloqueoestado con id de giro de ahorro =${id_giroahorro}. tal vez el Desbloqueoestado no fue encontrado  o req.body esta vacío!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "error al acutalizar el giroestado con id=" + id_giroahorro
+          message: "error al acutalizar el Desbloqueoestado con id=" + id_giroahorro
         });
       });
   };
@@ -66,23 +67,23 @@ exports.create = (req, res) => {
   exports.updatebyestado = (req, res) => {
     const id_estado = req.params.id_estado;
 
-    Giroestado.update(req.body, {
+    Desbloqueoestado.update(req.body, {
       where: { id_estado: id_estado}
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "giroestado fue actualizado satisfactoriamente."
+            message: "Desbloqueoestado fue actualizado satisfactoriamente."
           });
         } else {
           res.send({
-            message: `error al actualizar giroestado con id =${id}. tal vez el giroestado no fue encontrado  o req.body esta vacío!`
+            message: `error al actualizar Desbloqueoestado con id =${id}. tal vez el Desbloqueoestado no fue encontrado  o req.body esta vacío!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "error al acutalizar el giroestado con id=" + id
+          message: "error al acutalizar el Desbloqueoestado con id=" + id
         });
       });
   };
@@ -90,23 +91,23 @@ exports.create = (req, res) => {
   exports.deletebyahorro = (req, res) => {
     const id_giroahorro = req.params.id_giroahorro;
 
-    Giroestado.destroy({
+    Desbloqueoestado.destroy({
       where: { id_giroahorro: id_giroahorro }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "giroestado fue eliminado satisfactoriamente!"
+            message: "Desbloqueoestado fue eliminado satisfactoriamente!"
           });
         } else {
           res.send({
-            message: `no se pudo eliminar el giroestado con id =${id_giroahorro}. tal vez este giroestado no fue encontrado!`
+            message: `no se pudo eliminar el Desbloqueoestado con id =${id_giroahorro}. tal vez este Desbloqueoestado no fue encontrado!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "no se pudo borrar el giroestado con id =" + id_giroahorro
+          message: "no se pudo borrar el Desbloqueoestado con id =" + id_giroahorro
         });
       });
   };
@@ -114,23 +115,23 @@ exports.create = (req, res) => {
   exports.deletebyestado = (req, res) => {
     const id = req.params.id;
 
-    Giroestado.destroy({
+    Desbloqueoestado.destroy({
       where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "giroestado fue eliminado satisfactoriamente!"
+            message: "Desbloqueoestado fue eliminado satisfactoriamente!"
           });
         } else {
           res.send({
-            message: `no se pudo eliminar el giroestado con id =${id}. tal vez este giroestado no fue encontrado!`
+            message: `no se pudo eliminar el Desbloqueoestado con id =${id}. tal vez este Desbloqueoestado no fue encontrado!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "no se pudo borrar el giroestado con id =" + id
+          message: "no se pudo borrar el Desbloqueoestado con id =" + id
         });
       });
   };*/

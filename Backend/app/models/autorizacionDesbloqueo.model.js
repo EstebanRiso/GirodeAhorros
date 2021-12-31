@@ -19,8 +19,14 @@ module.exports = (sequelize, Sequelize) => {
                 model: 'autorizacion_pago', 
                 key: 'numero_autorizacion_pago'
              }
-        }
-        ,
+        },
+       /* id_estado:{
+            type: Sequelize.INTEGER,
+            references:{
+                model:'estado',
+                key:'id_estado'
+            }
+        },*/
         antecedentes:{
             type: Sequelize.STRING
         },

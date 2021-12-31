@@ -13,6 +13,13 @@ module.exports = (sequelize, Sequelize) => {
             key:'rut_beneficiario'
         }
       },
+      id_proyecto:{
+        type: Sequelize.INTEGER,
+        references:{
+          model: 'proyecto',
+          key: 'id_proyecto'
+        }
+      },
       certificado_nombre: {
         type: Sequelize.STRING,
       },

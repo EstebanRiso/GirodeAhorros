@@ -7,8 +7,8 @@ module.exports = {
   dialect: "postgres",
   pool: 
   {
-    max: 5,
-    min: 0,
+    max: 5,   // MAXIMOS QUERYS
+    min: 0,   // MINIMOS QUERYS
     acquire: 30000,
     idle: 10000
   }

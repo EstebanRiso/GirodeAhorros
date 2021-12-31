@@ -1,7 +1,8 @@
 const { constructora } = require("../models");
 const db = require("../models");
 const Giroahorro= db.giroahorro;
-const Constructora=db.constructora;
+const Autorizacionpago=db.autorizacionpago
+const Estado=db.estado
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -9,6 +10,7 @@ exports.create = (req, res) => {
   const giroahorro = {
     numero_autorizacion_giro: req.body.numero_autorizacion_giro,
     numero_autorizacion_pago:req.body.numero_autorizacion_pago,
+    id_estado: req.body.id_estado,
     comuna: req.body.comuna,
     numero_resolucion: req.body.numero_resolucion,
     fecha_resolucion: req.body.fecha_resolucion,
@@ -92,16 +94,17 @@ exports.create = (req, res) => {
       });
   };
 
-
-  // Consultas especificas
-  /*exports.ConsultaPorAuth= (req,res)=>{
+  exports.ConsultaPorAuth= (req,res)=>{
 
     const autorizacion=req.params.numero_autorizacion_giro
 
     Giroahorro.findOne({where:{numero_autorizacion_giro:autorizacion},
       include:[{
-        model:Constructora,
-        attributes:["rut_constructora","dv_constructora","nombre_constructora"]
+        model:Autorizacionpago,
+        attributes:["numero_autorizacion_pago","llamado","linea_subsidio","titulo","consolidada"]
+      },{
+        model:Estado,
+        attributes:["id_estado","nombre_estado"]
       }]
     })
     .then((data)=>{
@@ -115,6 +118,8 @@ exports.create = (req, res) => {
   
   }
 
+
+/*
   exports.ConsultaPorRutConstr= (req,res)=>{
 
     const rut_constructora=req.params.rut_constructora

@@ -28,35 +28,40 @@ db.banco = require("./banco.model.js")(sequelize, Sequelize);
 db.beneficiario = require("./beneficiario.model.js")(sequelize, Sequelize);
 db.constructora = require("./constructora.model.js")(sequelize, Sequelize);
 db.estado= require("./estado.model.js")(sequelize,Sequelize);
-db.giroahorro=require("./giroahorro.model.js")(sequelize,Sequelize);
-db.giroestado=require("./giroestado.model.js")(sequelize,Sequelize);
-db.autorizaciondesbloqueo=require("./autorizacionDesbloqueo.model.js")(sequelize,Sequelize);
-db.autorizacionpago=require("./autorizacionPago.model.js")(sequelize,Sequelize);
-db.certificado_proyecto=require("./certificado-proyecto.model.js")(sequelize,Sequelize);
-db.certificado=require("./certificado.model.js")(sequelize,Sequelize);
-db.detallepago=require("./detallePago.model.js")(sequelize,Sequelize);
-db.proyecto=require("./proyecto.model.js")(sequelize,Sequelize);
+db.giroahorro= require("./giroahorro.model.js")(sequelize,Sequelize);
+db.giroestado= require("./giroestado.model.js")(sequelize,Sequelize);
+db.autorizaciondesbloqueo= require("./autorizacionDesbloqueo.model.js")(sequelize,Sequelize);
+db.autorizacionpago= require("./autorizacionPago.model.js")(sequelize,Sequelize);
+db.certificado_proyecto= require("./certificado-proyecto.model.js")(sequelize,Sequelize);
+db.certificado= require("./certificado.model.js")(sequelize,Sequelize);
+db.detallepago= require("./detallePago.model.js")(sequelize,Sequelize);
+db.proyecto= require("./proyecto.model.js")(sequelize,Sequelize);
 db.factoring=require("./factoring.model.js")(sequelize,Sequelize);
+db.desbloqueoestado=require("./desbloqueoEstado.model")(sequelize,Sequelize);
 
 
 const banco= db.banco
 const beneficiario= db.beneficiario;
+const desbloqueoEstado=db.desbloqueoestado
 const constructora= db.constructora;
-const estado=  db.estado;
+const estado= db.estado;
 const giroAhorro= db.giroahorro;
-const giroEstado=db.giroestado;
-const autorizacionDesbloqueo=db.autorizaciondesbloqueo;
-const autorizacionPago=db.autorizacionpago;
-const certificadoProyecto=db.certificado_proyecto;
-const certificado=db.certificado;
-const detallePago=db.detallepago;
-const proyecto=db.proyecto;
-const factoring=db.factoring;
+const giroEstado= db.giroestado;
+const autorizacionDesbloqueo= db.autorizaciondesbloqueo;
+const autorizacionPago= db.autorizacionpago;
+const certificadoProyecto= db.certificado_proyecto;
+const certificado= db.certificado;
+const detallePago= db.detallepago;
+const proyecto= db.proyecto;
+const factoring= db.factoring;
 
 
 
 
-beneficiario.belongsTo(banco,{foreignKey:'id_banco'});
+beneficiario.belongsTo(banco,{foreignKey:{
+                              fieldName:'id_banco', 
+                              unique:true
+}});
 
 
 beneficiario.belongsTo(autorizacionPago,{foreignKey:'numero_autorizacion_pago'});
@@ -67,6 +72,8 @@ giroAhorro.belongsTo(autorizacionPago,{   foreignKey:{
                                           fieldName:'numero_autorizacion_pago',
                                           unique:true
 }});
+
+giroAhorro.belongsTo(estado,{foreignKey:'id_estado'})
 
 autorizacionDesbloqueo.belongsTo(autorizacionPago,{   foreignKey:{
                                                       fieldName:'numero_autorizacion_pago', 
@@ -83,6 +90,7 @@ proyecto.belongsTo(constructora,{foreignKey:'rut_constructora'})
 proyecto.belongsTo(autorizacionPago,{foreignKey:'numero_autorizacion'})
 
 certificado.belongsTo(beneficiario,{foreignKey:'rut_beneficiario'})
+certificado.belongsTo(proyecto,{foreignKey:'id_proyecto'})
 
 certificadoProyecto.belongsTo(certificado,{foreignKey:'id_certificado'})
 certificadoProyecto.belongsTo(proyecto,{foreignKey:'id_proyecto'})
@@ -92,6 +100,9 @@ detallePago.belongsTo(constructora,{foreignKey:'rut_constructora'})
 
 giroEstado.belongsTo(estado,{foreignKey:'id_estado'});
 giroEstado.belongsTo(giroAhorro,{foreignKey:'id_giroahorro'});
+
+desbloqueoEstado.belongsTo(estado,{foreignKey:'id_estado'});
+desbloqueoEstado.belongsTo(autorizacionDesbloqueo,{foreignKey:'id_desbloqueo'});
 
 //Prestamo.belongsTo(Libro,{foreignKey: 'id_libro_libros'}); 
 //Prestamo.belongsTo(Persona,{foreignKey: 'id_persona_personas'}); 

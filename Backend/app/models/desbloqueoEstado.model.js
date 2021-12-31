@@ -1,15 +1,16 @@
 module.exports = (sequelize, Sequelize) => {
-    const giroestado = sequelize.define("giroestado", {
-      id_giroestado:{
+    const desbloqueoestado = sequelize.define("desbloqueoestado", {
+      id_desbloqueoestado:{
           type: Sequelize.INTEGER,
           autoIncrement: true,
           primaryKey:true
-      },
-      id_giroahorro: {
+      }
+      ,
+      id_desbloqueo: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'giroahorro', 
-          key: 'numero_autorizacion_giro'
+          model: 'autorizacion_desbloqueo', 
+          key: 'numero_autorizacion_desbloqueo'
        }
       },
       id_estado: {
@@ -31,8 +32,8 @@ module.exports = (sequelize, Sequelize) => {
   
 
 
-    
+     desbloqueoestado.removeAttribute('id')
 
-    return giroestado;
+    return desbloqueoestado;
   };
   

@@ -23,6 +23,9 @@ module.exports = (sequelize, Sequelize) => {
        nombre_proyecto: {
         type: Sequelize.STRING,
       },
+        siglas_proyecto:{
+          type:Sequelize.STRING
+        }
     }, { 
       freezeTableName: true});
   

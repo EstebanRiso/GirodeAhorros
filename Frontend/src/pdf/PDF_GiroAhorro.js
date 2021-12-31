@@ -20,12 +20,25 @@ const ref = React.createRef();
 // Crear el documento pdf del giro de ahorro
 export  function PDF1(props){
 
-  const [datagiro,setData]=useState("")
-  const [dataconstructora,setData2]=useState("")
+  const [datagiro,setData]=useState([])
+  const [dataconstructora,setData2]=useState([])
   const [dataBeneficiario,setData3]=useState([])
   const [dataBanco,setData4]=useState([])
-
+  const [dataProyecto,setData5]=useState([])
+  const [datapago,setData6]=useState([])
+  const [dataCertificado,setData7]=useState([])
+  
   useEffect(()=>{
+
+    const ListarCertificadoByAuth=()=>{
+      axios.get(
+        host+"/api/certificado/consultaespecifica/1/"+props.numeroautorizacion
+      ).then((response)=>{
+        console.log("log de certificado")
+        console.log(response.data)
+        setData7(response.data)
+      })
+    }
     const Tomar_GiroAhorroByAuth=()=>{
       axios
       .get(
@@ -34,13 +47,25 @@ export  function PDF1(props){
       .then(
           (response) => {
               setData(response.data)
-              setData2(response.data.constructora)
+              setData6(response.data.autorizacion_pago)
           },
           (error) => {
               console.log(error)
           }
       );
     }
+    const ListarProyectoByAuth=()=>{
+      axios.get(
+        host+"/api/proyecto/consultaespecifica/1/"+props.numeroautorizacion
+      ).then(
+        (response)=>{
+          setData2(response.data.constructora)
+          setData5(response.data)
+        }
+      )
+
+    }
+
     const Listar_BeneficiariosByAuth=()=>{
       axios
       .get(
@@ -67,6 +92,8 @@ export  function PDF1(props){
 
     Tomar_GiroAhorroByAuth()
     Listar_BeneficiariosByAuth()
+    ListarProyectoByAuth()
+    ListarCertificadoByAuth()
     
   },[])
 
@@ -95,8 +122,9 @@ export  function PDF1(props){
 
     return(
           <>
-           <td>{data1[data2].certificado}</td>
+           <td>{dataCertificado[data2][0].certificado_nombre+" N° "+dataProyecto.siglas_proyecto+"-"+dataCertificado[data2][0].certificado_anio+"-"+dataCertificado[data2][0].id_certificado}</td>
            <td>{data1[data2].numero_cuenta}</td>
+           <td>{data1[data2].nombre_banco}</td>
            <td>{data1[data2].cantidad_ahorro}</td>
           </>
       )
@@ -112,24 +140,24 @@ export  function PDF1(props){
     const dv_constructora=dataconstructora.dv_constructora
    //giroahorro
     const numeroautorizacion=props.numeroautorizacion
-    const resolucion=datagiro.resolucion
-    const nombre_proyecto=datagiro.nombre_proyecto
-    const id_proyecto=datagiro.id_proyecto
+    const resolucion_numero=datagiro.numero_resolucion
+    const resolucion_fecha=datagiro.fecha_resolucion
+    const nombre_proyecto=dataProyecto.nombre_proyecto
+    const id_proyecto=dataProyecto.id_proyecto
     const comuna=datagiro.comuna
-    const llamado=datagiro.llamado
+    const llamado=datapago.llamado
   
-    
+    const titulodescarga="Autorización Giro de Ahorro N°"+numeroautorizacion+".pdf"
 
-    const fecha=new Date()
-    const fecha_hoy= fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear()
+    const fecha=datagiro.fecha_emision_documento
   
     if(props.index1==true && props.index2==false){
     return(
         
         <div >
              <br></br>
-            <Pdf targetRef={ref} filename="code-example.pdf">
-            {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+            <Pdf targetRef={ref} filename={titulodescarga}>
+            {({ toPdf }) => <Button variant="contained" color="primary" onClick={toPdf}>Generar PDF</Button>}
             </Pdf>
             <br></br>
             
@@ -147,10 +175,10 @@ export  function PDF1(props){
               <p style={estiloCuerpo1.estilo}>
                <br></br>
                 La Jefa del Departamento de Operaciones Habitacionales SERVIU Región del Biobío que suscribe, en virtud de lo 
-                dispuesto en el Art. 11 del D.S. N° 255 de (V. y U.) del 2006, y la {resolucion} que me delega la facultad de emitir giros de ahorro, cumplo con autorizar a {constructora}.
+                dispuesto en el Art. 11 del D.S. N° 255 de (V. y U.) del 2006, y la Resolución Exenta a Registro N°{resolucion_numero} del {resolucion_fecha} que me delega la facultad de emitir giros de ahorro, cumplo con autorizar a {constructora}.
                 RUT: {rut_constructora}-{dv_constructora} para proceder al Giro de los Ahorros Previos hasta el monto máximo que más adelante se señala, 
                 de los fondos acreditados como ahorros del o los beneficiarios de subsidios habitacionales comité {nombre_proyecto}.
-                ID:{id_proyecto} de la comuna de {comuna} - Modalidad Programa de Protección del Patrimonio
+                ID:{id_proyecto} de la comuna de {comuna} - Modalidad Programa de Protección del Patrimonio.
                 Familiar llamado {llamado}, que se encuentran depositados en las Cuentas de Ahorro, que se indican en la siguiente nomina:
                 <br></br><br></br>
               </p>
@@ -240,7 +268,7 @@ export  function PDF1(props){
          
             <br></br><br></br>
         
-              <h1 style={estiloCuerpo1.estilo}> Concepción,{  fecha_hoy}</h1>
+              <h1 style={estiloCuerpo1.estilo}> Concepción,{fecha}</h1>
               <br></br><br></br>
    
 

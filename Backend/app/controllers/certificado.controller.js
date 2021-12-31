@@ -1,5 +1,7 @@
 const db = require("../models");
 const Certificado = db.certificado;
+const Beneficiario=db.beneficiario;
+const Proyecto=db.proyecto;
 const Op = db.Sequelize.Op;
 
 
@@ -10,6 +12,7 @@ const Op = db.Sequelize.Op;
     const certificado = {
       id_certificado: req.body.id_certificado,
       rut_beneficiario: req.body.rut_beneficiario,
+      id_proyecto: req.body.id_proyecto,
       certificado_nombre: req.body.certificado_nombre,
       certificado_anio: req.body.certificado_anio
     };
@@ -92,3 +95,73 @@ const Op = db.Sequelize.Op;
           });
         });
     }
+
+
+  exports.CertificadosByAuthPago=(req,res)=>{
+      const numero_autorizacion_pago=req.params.numero_autorizacion_pago;
+  
+  
+      Beneficiario.findAll({
+        where:{numero_autorizacion_pago:numero_autorizacion_pago}
+      }).then(async(data)=>{
+  
+         const arr= await getCertificadosbyBenef(data)
+         
+         console.log("arr")
+         console.log(arr)
+
+         res.send(arr)
+      }).catch(err => {
+        res.status(500).send({
+          message:
+          err.message || "Error al listar certificados."
+        });
+      })
+    }
+  
+async function getCertificadosbyBenef(data){
+      
+      var arre=[]
+      
+      for(let dato of data){
+        let variable
+        variable= await getCertficiadobyRutBenef(dato.rut_beneficiario)
+        arre.push(variable)
+      }
+         
+      console.log("arre")
+      console.log(arre)
+      
+      return arre
+     
+}
+
+
+async function getCertficiadobyRutBenef(rut_beneficiario){
+
+
+  return Certificado.findAll({
+    where:{rut_beneficiario:rut_beneficiario},
+            include:[{
+             model:Proyecto,
+             attributes:["id_proyecto","rut_constructora","numero_autorizacion","nombre_proyecto","siglas_proyecto"]
+            }]
+        }).then((datos)=> {
+              return datos
+            })                
+              .catch(err => {
+                  res.status(500).send({
+             message:
+            err.message || "Error al listar certificados."
+            });
+            })
+}
+
+
+
+
+
+
+  
+ 
+

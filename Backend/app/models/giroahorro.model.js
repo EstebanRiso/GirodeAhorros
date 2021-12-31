@@ -6,6 +6,13 @@ module.exports = (sequelize, Sequelize) => {
       type:Sequelize.INTEGER,
       primaryKey:true 
     },
+    id_estado:{
+      type:Sequelize.INTEGER,
+       references:{
+        model: 'estado',
+        key: 'id_estado'
+       }
+    },
     numero_autorizacion_pago:{
       type:Sequelize.INTEGER,
       references: {

@@ -1,7 +1,9 @@
 const db = require("../models");
 const AutorizacionDesbloqueo = db.autorizaciondesbloqueo;
 const Op = db.Sequelize.Op;
-
+const Autorizacionpago=db.autorizacionpago
+const Estado=db.desbloqueoestado
+const AutorizacionGiro=db.giroahorro
 
 
   
@@ -93,4 +95,31 @@ const Op = db.Sequelize.Op;
             message: "no se pudo borrar AutorizacionDesbloqueo con numero autorizacion desbloqueo =" + numero_autorizacion_desbloqueo 
           });
         });
+    }
+
+    exports.ConsultaPorAuth= (req,res)=>{
+    
+      const autorizacion=req.params.numero_autorizacion_giro
+      
+      AutorizacionDesbloqueo.findOne({where:{numero_autorizacion_giro:autorizacion},
+        include:[{
+          model:Autorizacionpago,
+          attributes:["numero_autorizacion_pago","llamado","linea_subsidio","titulo","consolidada"]
+        },/*{
+          model:Estado,
+          attributes:["id_estado","nombre_estado"]
+        },*/{
+          model:AutorizacionGiro,
+          attributes:["id_estado","comuna","numero_resolucion","fecha_resolucion","fecha_emision_documento"]
+        }]
+      })
+      .then((data)=>{
+        res.send(data);
+      }).catch((error)=>{
+        res.status(500).send({
+          message:
+            error.message || "Error al encontrar giro de ahorro."
+        });
+      })
+    
     }

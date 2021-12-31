@@ -106,7 +106,7 @@ exports.create = (req, res) => {
     Beneficiario.findAll({where:{numero_autorizacion_pago:autorizacion},
       include:[{
         model:Banco,
-        attributes:["nombre_banco","numero_cuenta","certificado","cantidad_ahorro"]
+        attributes:["nombre_banco","numero_cuenta","cantidad_ahorro"]
       }]
     })
     .then((data)=>{

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios'
 import {PDFDownloadLink as DWLink} from '@react-pdf/renderer';
 import {PDF1} from "../../pdf/PDF_GiroAhorro"
+import {PDF2} from "../../pdf/PDF_DesbloqueoCuenta"
 import MaterialDatatable from "material-datatable";
 
 const host="http://localhost:8081"
@@ -11,9 +12,19 @@ const host="http://localhost:8081"
 
 
 
-function Renderizar(props){
+function Renderizar1(props){
   if(props.numeroautorizacion){
     return( <PDF1 index1={props.b1} index2={props.b2} numeroautorizacion={props.numeroautorizacion} />)
+  }
+  else{
+    return(null)
+  }
+  
+}
+
+function Renderizar2(props){
+  if(props.numeroautorizacion){
+    return( <PDF2 index1={props.b1} index2={props.b2} numeroautorizacion={props.numeroautorizacion} />)
   }
   else{
     return(null)
@@ -38,6 +49,7 @@ export default function Giro(){
       )
       .then(
           (response) => {
+              console.log(response.data)
               setData(response.data)
        
           },
@@ -62,20 +74,26 @@ export default function Giro(){
   
 
   const ColumnasGiros=[
-        { 
-          name:'N° Autorizacion de Giro',
-          field:'numero_autorizacion_giro'
-        },
-
-        {
-         name:'Año Llamado',
-         field:'llamado'
-        },
-
-        {
-         name:'Nombre del Proyecto',
-         field:'nombre_proyecto'
-        }
+    {
+      name:'N° Autorizacion Giro',
+      field:'numero_autorizacion_giro'
+     },
+     {
+       name:'N° resolución',
+       field:'numero_resolucion'
+     },
+     {
+       name:'Fecha Emision',
+       field:'fecha_emision_documento'
+     },
+     {
+       name:'Comuna',
+       field:'comuna'
+     },
+     {
+       name: 'Fecha Resolución',
+       field:'fecha_resolucion'
+     },
   ]
 
   
@@ -161,7 +179,8 @@ export default function Giro(){
             }>
               Ver Autorización Desbloqueo de Cuentas
             </Button>
-               <Renderizar b1={pressB1} b2={pressB2} numeroautorizacion={numauto}></Renderizar>
+               <Renderizar1 b1={pressB1} b2={pressB2} numeroautorizacion={numauto}></Renderizar1>
+               <Renderizar2 b1={pressB1} b2={pressB2} numeroautorizacion={numauto}></Renderizar2>
             </Container>
        </Container>
   );

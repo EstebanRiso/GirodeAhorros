@@ -9,6 +9,7 @@ module.exports = app => {
     router.get("/", autorizaciondesbloqueo.findAll);
     router.delete("/:numero_autorizacion_desbloqueo",autorizaciondesbloqueo.delete);  
     router.put("/:numero_autorizacion_desbloqueo", autorizaciondesbloqueo.update);
+    router.get("/consultaespecifica/1/:numero_autorizacion_giro",autorizaciondesbloqueo.ConsultaPorAuth)
 
     app.use("/api/autorizacionDesbloqueo", router);
   };

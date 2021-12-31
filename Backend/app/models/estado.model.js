@@ -8,9 +8,6 @@ module.exports = (sequelize, Sequelize) => {
       nombre_estado: {
         type: Sequelize.STRING
       },
-      comentario:{
-        type: Sequelize.STRING
-      }
     }, { 
       freezeTableName: true});
   

@@ -1,5 +1,7 @@
 const db = require("../models");
 const Proyecto = db.proyecto;
+const Autorizacionpago=db.autorizacionpago;
+const Constructora= db.constructora;
 const Op = db.Sequelize.Op;
 
 
@@ -12,7 +14,8 @@ const Op = db.Sequelize.Op;
       id_proyecto: req.body.id_proyecto,
       rut_constructora: req.body.rut_constructora,
       numero_autorizacion: req.body.numero_autorizacion,
-      nombre_proyecto: req.body.nombre_proyecto
+      nombre_proyecto: req.body.nombre_proyecto,
+      siglas_proyecto: req.body.siglas_proyecto
     };
   
     //console.log(prestamo.fecha);
@@ -92,4 +95,28 @@ const Op = db.Sequelize.Op;
             message: "no se pudo borrar proyecto con id de proyecto=" + id_proyecto
           });
         });
+    }
+
+    exports.ConsultaPorAuth= (req,res)=>{
+
+      const autorizacion=req.params.numero_autorizacion
+  
+      Proyecto.findOne({where:{numero_autorizacion:autorizacion},
+        include:[{
+          model:Autorizacionpago,
+          attributes:["numero_autorizacion_pago","llamado","linea_subsidio","titulo","consolidada"]
+        },{
+          model:Constructora,
+          attributes:["rut_constructora","dv_constructora","nombre_constructora"]
+        }]
+      })
+      .then((data)=>{
+        res.send(data);
+      }).catch((error)=>{
+        res.status(500).send({
+          message:
+            err.message || "Error al encontrar giro de ahorro."
+        });
+      })
+    
     }

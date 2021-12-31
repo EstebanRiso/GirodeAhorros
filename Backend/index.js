@@ -44,7 +44,7 @@ require("./app/routes/certificado.routes")(app);
 require("./app/routes/detallePago.routes")(app);
 require("./app/routes/factoring.routes")(app);
 require("./app/routes/proyecto.routes")(app);
-
+require("./app/routes/desbloqueoEstado.routes")(app);
 
 
 // set port, listen for requests
