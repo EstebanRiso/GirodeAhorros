@@ -95,7 +95,7 @@ export  function PDF1(props){
     ListarProyectoByAuth()
     ListarCertificadoByAuth()
     
-  },[])
+  },[props.numeroautorizacion])
 
   const FilaBenef = (data1,data2) => {
 
@@ -155,13 +155,8 @@ export  function PDF1(props){
     return(
         
         <div >
-             <br></br>
-            <Pdf targetRef={ref} filename={titulodescarga}>
-            {({ toPdf }) => <Button variant="contained" color="primary" onClick={toPdf}>Generar PDF</Button>}
-            </Pdf>
-            <br></br>
             
-            <div ref={ref}>
+            <div ref={ref} style={estilopagina.section}>
                 <img src={imagen} style={{width:100,height:100}} />
       
 
@@ -275,6 +270,12 @@ export  function PDF1(props){
      
         
           </div>
+
+          <br></br>
+          <br></br>
+          <Pdf targetRef={ref} filename={titulodescarga}>
+            {({ toPdf }) => <Button variant="contained" color="primary" onClick={toPdf}>Generar PDF</Button>}
+          </Pdf>
        </div>
     );
     }

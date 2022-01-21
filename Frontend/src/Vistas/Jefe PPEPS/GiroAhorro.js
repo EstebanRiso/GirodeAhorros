@@ -13,6 +13,8 @@ const host="http://localhost:8081"
 
 
 function Renderizar1(props){
+
+  console.log("dentro de Renderizar1"+props.numeroautorizacion)
   if(props.numeroautorizacion){
     return( <PDF1 index1={props.b1} index2={props.b2} numeroautorizacion={props.numeroautorizacion} />)
   }
@@ -23,6 +25,7 @@ function Renderizar1(props){
 }
 
 function Renderizar2(props){
+  console.log("dentro de Renderizar2"+props.numeroautorizacion)
   if(props.numeroautorizacion){
     return( <PDF2 index1={props.b1} index2={props.b2} numeroautorizacion={props.numeroautorizacion} />)
   }
@@ -39,6 +42,7 @@ export default function Giro(){
   const [pressB2,setpressB2]=useState(false);
   const [numauto,setNum]=useState(null);
   const [data,setData]=useState("")
+  const [pressB3,setpressB3]=useState(null)
 
 
   useEffect(()=>{
@@ -67,7 +71,11 @@ export default function Giro(){
     download:false,
     print:false,
     onRowClick:(data,data2)=>{
-      setNum(data.numero_autorizacion_giro)
+      if(pressB1==false && pressB2==false){
+        setNum(data.numero_autorizacion_giro)
+      }else{
+        setpressB3(true)
+      }
     }
   };
   
@@ -104,7 +112,6 @@ export default function Giro(){
           
 
     <Container>
-        
        <Container>
          <h1>
              GESTION GIRO DE AHORRO
